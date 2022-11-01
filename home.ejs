@@ -1,0 +1,21 @@
+<%- include("partials/header"); -%>
+
+   <h1>HOME</h1>
+   <p><%= homeStarting %></p>
+
+   <% allposts.forEach(function(eachPost) { %>
+      <h2><%= eachPost.title %></h2>
+      <% if (eachPost.body.length<=100) { %>
+            <p><%= eachPost.body %></p>
+      <% }  else { %>
+         <%     const truncatedBody = eachPost.body.substring(0, 100); %>
+
+         <%   const topic = eachPost.title.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[\s_]+/g, '-').toLowerCase(); %>
+         <%    const link = "/posts/" + topic; %>
+            <p><%= truncatedBody + "... " %> <a href=<%= link %> >read more</a> </p>    
+       <%  } %>
+   <% }) %>
+   
+<%- include("partials/footer"); -%>
+
+
